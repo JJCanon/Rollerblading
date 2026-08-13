@@ -160,18 +160,18 @@ cover the section 5: sale of skating products.
 | images      | text[]                                              | product images                                            |                                         |
 | active      | boolean                                             | if the product is still available to sell                 |                                         |
 | created_by  | UUID                                                | Foreign key of the user                                   | reference to users                      |
-| state       | enum("APPROVED","PENDING","REJECTED","CANCELED")    | If the product is approved or not by the admin to publish |                                         |
+| state       | enum("APPROVED","PENDING","REJECTED","CANCELLED")   | If the product is approved or not by the admin to publish |                                         |
 
 
 ### `orders`
-| Field           | Type                                        | Description                              | Notes                                           |
-| --------------- | ------------------------------------------- | ---------------------------------------- | ----------------------------------------------- |
-| id              | UUID (PK)                                   | Unique identifier for the order          |                                                 |
-| user_id         | UUID                                        | User who has bought the product          | reference to users, just 'roller/admin' can buy |
-| total_amount    | numeric(10,2)                               | amount to pay for the product(s)         |                                                 |
-| state           | enum('PENDING','PAID','DELIVERED','CANCEL') | Order state                              |                                                 |
-| mailing_address | text                                        | address where the product will be mailed |                                                 |
-| order_date      | timestamp                                   | order date                               |                                                 |
+| Field           | Type                                                  | Description                              | Notes                                           |
+| --------------- | ----------------------------------------------------- | ---------------------------------------- | ----------------------------------------------- |
+| id              | UUID (PK)                                             | Unique identifier for the order          |                                                 |
+| user_id         | UUID                                                  | User who has bought the product          | reference to users, just 'roller/admin' can buy |
+| total_amount    | numeric(10,2)                                         | amount to pay for the product(s)         |                                                 |
+| state           | enum('PENDING','PAID','DELIVERED','SENT','CANCELLED') | Order state                              |                                                 |
+| mailing_address | text                                                  | address where the product will be mailed |                                                 |
+| order_date      | timestamp                                             | order date                               |                                                 |
 
 ### `order_items`
 | Field         | Type                  | Description                          | Notes |
@@ -194,7 +194,7 @@ cover the section 5: sale of skating products.
 ---
 
 ## Summary of who can do what
-| Entity                        | Guest     | Skater                  | admin                               |
+| Entity                        | Guest     | Roller                  | Admin                               |
 | ----------------------------- | --------- | ----------------------- | ----------------------------------- |
 | history, social_media_contact | read-only | read-only               | read and write                      |
 | instagram_posts               | read-only | read-only               | synced only; no manual write access |

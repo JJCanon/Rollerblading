@@ -55,7 +55,7 @@ flowchart TD
 
 ## Roles
 - **Invited**: without account, can only access to the public sections of the website (sections 1, 2, 6, 7, 8).
-- **Roller**: registered user, it could buy products, publish entrepreneurship or services, etc (sections 1, 2, 3, 4, 5, 6, 7, 8).
+- **Roller**: registered user, it could buy products, publish products for sale (pending admin approval), publish entrepreneurship or services, etc (sections 1, 2, 3, 4, 5, 6, 7, 8).
 - **Admin**: registered user with admin role, it could manage the content of the website (sections 1, 2, 3, 4, 5, 6, 7, 8).
 
 the role travel in the JWT created by the Auth Service. the API Gateway makes a basic token's validatio, but **each microservice validate again the role** before to execute any action - never trust just what the fronted hide.
