@@ -1,0 +1,59 @@
+name: rollerblading-website
+
+services:
+  # databases
+  auth-db:
+    image: postgres:16-alpine
+    container_name: auth-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${AUTH_DB_USER}
+      POSTGRES_PASSWORD: ${AUTH_DB_PASSWORD}
+      POSTGRES_DB: ${AUTH_DB_NAME}
+    ports:
+      - "5433-5432"
+    volumnes:
+      - auth_db_data:/var/lib/postgresql/data
+    networks: [rollerblading-net]
+
+  events-db:
+    image: postgres:16-alpine
+    container_name: events-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${EVENTS_DB_USER}
+      POSTGRES_PASSWORD: ${EVENTS_DB_PASSWORD}
+      POSTGRES_DB: ${EVENTS_DB_NAME}
+    ports:
+      - "5434-5432"
+    volumes:
+      - events_db_data:/var/lib/postgresql/data
+    networks: [rollerblading-net]
+
+  store-db:
+    image: postgres:16-alpine
+    container_name: store-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${STORE_DB_USER}
+      POSTGRES_PASSWORD: ${STORE_DB_PASSWORD}
+      POSTGRES_DB: ${STORE_DB_NAME}
+    ports:
+      - "5435-5432"
+    volumes:
+      - store_db_data:/var/lib/postgresql/data
+    networks: [rollerblading-net]
+
+  content-db:
+    image: postgres:16-alpine
+    container_name: content-db
+    restart: unless-stopped
+    environment: 
+      POSTGRES_USER: ${CONTENT_DB_USER}
+      POSTGRES_PASSWORD: ${CONTENT_DB_PASSWORD}
+      POSTGRES_DB: ${CONTENT_DB_NAME}
+    ports:
+      - "5436-5432"
+    volumes:
+      - content_db_data:/var/lib/postgresql/data
+    networks: [rollerblading-net]
