@@ -218,3 +218,4 @@ __marimo__/
 .streamlit/secrets.toml
 
 roadmap-desarrollo.md
+backend/auth-service/node_modules/
