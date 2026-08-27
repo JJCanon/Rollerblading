@@ -58,6 +58,20 @@ services:
       - content_db_data:/data/db
     networks: [rollerblading-net]
 
+  auth-service:
+    build: ./backend/auth-service
+    container_name: auth-service
+    restart: unless-stopped
+    env_file:
+      - ./backend/auth-service/.env
+    environment:
+      DATABASE_URL: postgres://${AUTH_DB_USER}:${AUTH_DB_PASSWORD}@auth-db:5432/${AUTH_DB_NAME}
+    ports:
+      - "3001:3001"
+    depends_on:
+      - auth-db
+    networks: [rollerblading-net]
+
 networks:
   rollerblading-net:
     driver: bridge
