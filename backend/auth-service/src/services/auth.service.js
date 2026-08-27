@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { env } from '../config/env.js';
 import { createUser, findUserByEmail, findUserById } from '../repositories/user.repository.js';
-import { saveRefreshToken, findValidRefreshToken, revokeRefreshToken } from "../repositories/refresh_token.repository.js";
+import { saveRefreshToken, findValidRefreshToken, revokeRefreshToken, revokeAllUserTokens } from '../repositories/refresh_token.repository.js';
 import { generateAccessToken, generateRefreshToken, hashToken, parseDurationToMs } from "./token.service.js";
 
 // "Decoy" hash precomputed once when the service starts.
@@ -108,4 +108,9 @@ export async function logoutUser(refreshToken) {
     if (existing) {
         await revokeRefreshToken(existing.id);
     }
+}
+
+// Logout All Users
+export async function logoutAllSessions(userId) {
+    await revokeAllUserTokens(userId);
 }

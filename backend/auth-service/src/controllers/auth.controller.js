@@ -1,5 +1,5 @@
 import { registerSchema, loginSchema, refreshSchema, logoutSchema } from "../schemas/auth.schema.js";
-import { registerUser, loginUser, refreshTokens, logoutUser } from "../services/auth.service.js";
+import { registerUser, loginUser, refreshTokens, logoutUser, logoutAllSessions } from '../services/auth.service.js';
 import { findUserById } from "../repositories/user.repository.js";
 
 // Register controller
@@ -90,6 +90,16 @@ export async function me(req, res, next) {
         }
 
         res.status(200).json({ user });
+    } catch (err) {
+        next(err);
+    }
+}
+
+// Logout All Users Controller
+export async function logoutAll(req, res, next) {
+    try {
+        await logoutAllSessions(req.user.id);
+        res.status(204).send();
     } catch (err) {
         next(err);
     }
