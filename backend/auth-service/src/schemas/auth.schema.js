@@ -9,3 +9,19 @@ export const registerSchema = z.object({
     cellphone: z.string().optional(),
     avatarUrl: z.string().url('Avatar URL invalid').optional()
 })
+
+// Login Schema
+export const loginSchema = z.object({
+    email: z.string().email('Invalid email'),
+    password: z.string().min(1, 'the password is required'),
+});
+
+// Refresh Token Schema
+export const refreshSchema = z.object({
+    refreshToken: z.string().min(1, 'Refresh token is required')
+});
+
+// Logout Schema
+export const logoutSchema = z.object({
+    refreshToken: z.string().min(1, 'Refresh token is required')
+});
