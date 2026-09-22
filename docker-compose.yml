@@ -72,6 +72,18 @@ services:
       - auth-db
     networks: [rollerblading-net]
 
+  api-gateway:
+    build: ./backend/api-gateway
+    container_name: api-gateway
+    restart: unless-stopped
+    env_file:
+      - ./backend/api-gateway/.env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - auth-service
+    networks: [rollerblading-net]
+
 networks:
   rollerblading-net:
     driver: bridge
