@@ -220,3 +220,5 @@ __marimo__/
 roadmap-desarrollo.md
 backend/auth-service/node_modules/
 backend/auth-service/.env.test
+backend/api-gateway/node_modules/
+
