@@ -82,6 +82,21 @@ services:
       - "8080:8080"
     depends_on:
       - auth-service
+      - content-service
+    networks: [rollerblading-net]
+
+  content-service:
+    build: ./backend/content-service
+    container_name: content-service
+    restart: unless-stopped
+    env_file:
+      - ./backend/content-service/.env
+    environment:
+      DATABASE_URL: mongodb://${CONTENT_DB_USER}:${CONTENT_DB_PASSWORD}@content-db:27017/${CONTENT_DB_NAME}?authSource=admin
+    ports:
+      - "3002:3002"
+    depends_on:
+      - content-db
     networks: [rollerblading-net]
 
 networks:

@@ -54,7 +54,7 @@ cover the sections 1, 2, 6, 7 and 8: History, Instagram posts, colaborators, ent
     "caption": "string",
     "permalink": "string",
     "publishedAt": "datetime",
-    "syncronizedAt": "datetime"
+    "synchronizedAt": "datetime"
 }
 ```
 
@@ -66,6 +66,7 @@ cover the sections 1, 2, 6, 7 and 8: History, Instagram posts, colaborators, ent
     "value": "string (url or number)",
     "visible": "boolean",
     "order": "integer",
+    "updateAt":"datetime"
 }
 ```
 
@@ -85,7 +86,9 @@ cover the sections 1, 2, 6, 7 and 8: History, Instagram posts, colaborators, ent
         "email": "string"
     },
     "active": "boolean",
-    "order": "integer"
+    "order": "integer",
+    "createAt":"datetime",
+    "updateAt":"datetime"
 }
 ```
 
@@ -104,7 +107,8 @@ cover the sections 1, 2, 6, 7 and 8: History, Instagram posts, colaborators, ent
                 }",
     "images": ["url"],
     "state": "APPROVED | PENDING | REJECTED",
-    "createdAt": "datetime"
+    "createdAt": "datetime",
+    "updateAt":"datetime"
 }
 ```
 publish by a 'roller' user, it could be approved or rejected by an 'admin' user (change 'state').
