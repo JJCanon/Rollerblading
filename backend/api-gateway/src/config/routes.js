@@ -17,6 +17,7 @@ module.exports = [
 
     // Sección 2: Instagram feed
     { method: 'GET', path: '/api/content/instagram-posts', service: 'CONTENT', roles: ALL },
+    { method: 'POST', path: '/api/content/instagram-posts/sync', service: 'CONTENT', roles: ADMIN_ONLY },
 
     // Sección 6: Social media / contact
     { method: 'GET', path: '/api/content/social-media', service: 'CONTENT', roles: ALL },
@@ -25,15 +26,18 @@ module.exports = [
     { method: 'DELETE', path: '/api/content/social-media/:id', service: 'CONTENT', roles: ADMIN_ONLY },
 
     // Sección 7: Collaborators
-    { method: 'GET', path: '/api/content/colaborators', service: 'CONTENT', roles: ALL },
-    { method: 'POST', path: '/api/content/colaborators', service: 'CONTENT', roles: ADMIN_ONLY },
-    { method: 'PUT', path: '/api/content/colaborators/:id', service: 'CONTENT', roles: ADMIN_ONLY },
-    { method: 'DELETE', path: '/api/content/colaborators/:id', service: 'CONTENT', roles: ADMIN_ONLY },
+    { method: 'GET', path: '/api/content/collaborators', service: 'CONTENT', roles: ALL },
+    { method: 'POST', path: '/api/content/collaborators', service: 'CONTENT', roles: ADMIN_ONLY },
+    { method: 'PUT', path: '/api/content/collaborators/:id', service: 'CONTENT', roles: ADMIN_ONLY },
+    { method: 'DELETE', path: '/api/content/collaborators/:id', service: 'CONTENT', roles: ADMIN_ONLY },
 
     // Sección 8: Entrepreneurship
     { method: 'GET', path: '/api/content/entrepreneurship', service: 'CONTENT', roles: ALL },
+    { method: 'GET', path: '/api/content/entrepreneurship/mine', service: 'CONTENT', roles: AUTHENTICATED },
     { method: 'POST', path: '/api/content/entrepreneurship', service: 'CONTENT', roles: AUTHENTICATED },
+    { method: 'PUT', path: '/api/content/entrepreneurship/:id', service: 'CONTENT', roles: AUTHENTICATED },
     { method: 'PATCH', path: '/api/content/entrepreneurship/:id/state', service: 'CONTENT', roles: ADMIN_ONLY },
+    { method: 'DELETE', path: '/api/content/entrepreneurship/:id', service: 'CONTENT', roles: AUTHENTICATED },
 
     // ───────── Events Service ─────────
     // Sección 3: Events

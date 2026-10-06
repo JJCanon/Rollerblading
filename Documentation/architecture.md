@@ -38,7 +38,7 @@ flowchart TD
 | API Gateway     | Nginx / Kong (or own gateway implementation) | route, initial validation of JWT, rate limiting                                           |
 | Auth Service    | Node.js + Express + PostgreSQL               | register, login, JWT generation, manage of three roles (roller, admin, invited)           |
 | Content Service | Java + Spring Boot + MongoDB                 | History, Instagram posts, colaborators, entrepreneurship, Social Media / Contact          |
-| Events Service  | Python + FastAPI + PostgreSQL                | Events, inscriptions, schedules                                                           |
+| Events Service  | Python + FastAPI + PostgreSQL                | Events, schedules                                                                         |
 | Store Service   | Go + Gin + PostgreSQL                        | Products catalog, orders, payments                                                        |
 
 ## Mapping of sections to services

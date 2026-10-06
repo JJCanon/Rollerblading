@@ -58,6 +58,21 @@ services:
       - content_db_data:/data/db
     networks: [rollerblading-net]
 
+  # microservices
+  api-gateway:
+    build: ./backend/api-gateway
+    container_name: api-gateway
+    restart: unless-stopped
+    env_file:
+      - ./backend/api-gateway/.env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - auth-service
+      - content-service
+      - events-service
+    networks: [rollerblading-net]
+
   auth-service:
     build: ./backend/auth-service
     container_name: auth-service
@@ -70,19 +85,6 @@ services:
       - "3001:3001"
     depends_on:
       - auth-db
-    networks: [rollerblading-net]
-
-  api-gateway:
-    build: ./backend/api-gateway
-    container_name: api-gateway
-    restart: unless-stopped
-    env_file:
-      - ./backend/api-gateway/.env
-    ports:
-      - "8080:8080"
-    depends_on:
-      - auth-service
-      - content-service
     networks: [rollerblading-net]
 
   content-service:
@@ -98,6 +100,21 @@ services:
     depends_on:
       - content-db
     networks: [rollerblading-net]
+  
+  events-service:
+    build: ./backend/events-service
+    container_name: events-service
+    restart: unless-stopped
+    env_file:
+      - ./backend/events-service/.env
+    environment:
+      DATABASE_URL: postgresql+psycopg://${EVENTS_DB_USER}:${EVENTS_DB_PASSWORD}@events-db:5432/${EVENTS_DB_NAME}
+    ports:
+      - "3003:3003"
+    depends_on:
+      - events-db
+    networks: [rollerblading-net]
+
 
 networks:
   rollerblading-net:
