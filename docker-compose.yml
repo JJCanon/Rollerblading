@@ -71,6 +71,7 @@ services:
       - auth-service
       - content-service
       - events-service
+      - store-service
     networks: [rollerblading-net]
 
   auth-service:
@@ -113,6 +114,20 @@ services:
       - "3003:3003"
     depends_on:
       - events-db
+    networks: [rollerblading-net]
+
+  store-service:
+    build: ./backend/store-service
+    container_name: store-service
+    restart: unless-stopped
+    env_file:
+      - ./backend/store-service/.env
+    environment:
+      DATABASE_URL: postgres://${STORE_DB_USER}:${STORE_DB_PASSWORD}@store-db:5432/${STORE_DB_NAME}?sslmode=disable
+    ports:
+      - "3004:3004"
+    depends_on:
+      - store-db
     networks: [rollerblading-net]
 
 
